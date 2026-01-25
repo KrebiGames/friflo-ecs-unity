@@ -19,6 +19,8 @@ Unity package with full Editor integration for [**Friflo.Engine.ECS**](https://g
 
 # Setup
 
+## Using Unity Package Manager
+
 Add **friflo ECS** Unity extension package with Unity Package Manager.
 
 1. Open **Unity > Window > Package Manager**
@@ -27,6 +29,11 @@ Add **friflo ECS** Unity extension package with Unity Package Manager.
    ```
    https://github.com/friflo/friflo-ecs-unity.git
    ```
+## Using Nuget for Unity
+
+1. Install [Nuget for Unity](https://github.com/GlitchEnzo/NuGetForUnity?tab=readme-ov-file#how-do-i-install-nugetforunity)
+2. In the Nuget for Unity window, search for: `Friflo.Engine.ECS`. Select the package and install it
+<img width="997" height="641" alt="image" src="https://github.com/user-attachments/assets/be64297a-9d40-44a8-8601-8c92e2a1d8cc" />
 
 
 
