@@ -19,6 +19,14 @@ Unity package with full Editor integration for [**Friflo.Engine.ECS**](https://g
 
 # Setup
 
+## Using Submodule
+
+1. Open Git Bash / Terminal at the project root
+2. Add submodule
+   ```
+   git submodule add https://github.com/KrebiGames/friflo-ecs-unity.git Packages/friflo.friflo-ecs-unity
+   ```
+
 ## Using Unity Package Manager
 
 Add **friflo ECS** Unity extension package with Unity Package Manager.
