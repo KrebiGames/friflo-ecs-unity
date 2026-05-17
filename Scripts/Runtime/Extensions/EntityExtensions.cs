@@ -1,29 +1,17 @@
 using Friflo.Engine.ECS;
-using System;
 
 namespace Friflo.Engine.Unity {
 	public static class EntityExtensions {
-		public static void AddComponentReflection(this Entity entity, IComponent component) {
-			if (component == null)
-				return;
+		public static void AddComponent(this Entity entity, IComponent component) =>
+			Add(entity, nameof(Entity.AddComponent), component);
 
-			var type = component.GetType();
+		public static void AddTag(this Entity entity, ITag tag) =>
+			Add(entity, nameof(Entity.AddTag), tag);
 
-			var method = typeof(Entity)
-				.GetMethod(nameof(Entity.AddComponent), Type.EmptyTypes)
-				.MakeGenericMethod(type);
-
-			method.Invoke(entity, null);
-		}
-
-		public static void AddTagReflection(this Entity entity, ITag tag) {
-			var type = tag.GetType();
-
-			var method = typeof(Entity)
-				.GetMethod(nameof(Entity.AddTag), Type.EmptyTypes)
-				.MakeGenericMethod(type);
-
-			method.Invoke(entity, null);
-		}
+		private static void Add(Entity entity, string methodName, object value) =>
+			typeof(Entity)
+				.GetMethod(methodName, System.Type.EmptyTypes)
+				.MakeGenericMethod(value.GetType())
+				.Invoke(entity, null);
 	}
 }
