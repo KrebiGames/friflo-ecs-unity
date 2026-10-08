@@ -37,7 +37,7 @@ public class StoreContext
     
     /// Store the individual entity id for each GameObject per store.
     /// Drag/Drop or Redo/Undo may move an entity to a different store which assigned a different entity id.
-    internal readonly   Dictionary<int, int>    linkIds = new ();
+    internal readonly   Dictionary<EntityId, int>    linkIds = new ();
     
     /// <summary>
     /// Used by <see cref="ECSEntity.Awake"/> to check if a <see cref="ECSEntity"/> was added by
@@ -258,7 +258,7 @@ public class StoreContext
         var entity = entityStore.Batch()
             .Add(new GameObjectLink(gameObject))
             .CreateEntity(id);
-        linkIds[gameObject.GetInstanceID()] = id;
+        linkIds[gameObject.GetEntityId()] = id;
         return entity; 
     }
     
@@ -267,7 +267,7 @@ public class StoreContext
         var entity = entityStore.Batch()
             .Add(new GameObjectLink(gameObject))
             .CreateEntity();
-        linkIds[gameObject.GetInstanceID()] = entity.Id;
+        linkIds[gameObject.GetEntityId()] = entity.Id;
         return entity;
     }
     #endregion

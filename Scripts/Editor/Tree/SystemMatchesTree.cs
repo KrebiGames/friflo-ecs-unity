@@ -17,15 +17,15 @@ namespace Friflo.Engine.UnityEditor
         private readonly    List<SystemTreeMatch>   matchingSystems = new();
         internal            bool                    groupMatches;        
         
-        public SystemMatchesTree(TreeViewState treeViewState) : base (treeViewState) {
+        public SystemMatchesTree(TreeViewState<int> treeViewState) : base (treeViewState) {
             rowHeight = 20;
             // state.selectedIDs.Clear();
             Reload();
         }
 
-        protected override TreeViewItem BuildRoot() {
+        protected override TreeViewItem<int> BuildRoot() {
             var root        = new SystemRow(-1, -1, "Root",  null, null, -1);
-            var items       = new List<TreeViewItem>();
+            var items       = new List<TreeViewItem<int>>();
             var systemCount = 0;
             foreach (var match in matchingSystems) {
                 if (match.system is QuerySystemBase) systemCount++;
@@ -51,7 +51,7 @@ namespace Friflo.Engine.UnityEditor
             return root;
         }
         
-        private static void BuildAddItem(List<TreeViewItem> items, int id, int depth, string name, ECSSystemSet systemSet, BaseSystem system, int count)
+        private static void BuildAddItem(List<TreeViewItem<int>> items, int id, int depth, string name, ECSSystemSet systemSet, BaseSystem system, int count)
         {
             name = count >= 0 ? $"{name} [{count}]" : name;
             items.Add(new SystemRow (id, depth, name, systemSet, system, count));

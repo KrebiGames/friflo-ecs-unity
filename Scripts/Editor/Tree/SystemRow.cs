@@ -12,7 +12,7 @@ namespace Friflo.Engine.UnityEditor
 {
     // [Serializable]
     //The TreeElement data class is extended to hold extra data, which you can show and edit in the front-end TreeView.
-    internal class SystemRow : TreeViewItem
+    internal class SystemRow : TreeViewItem<int>
     {
         internal readonly   BaseSystem      system;
         internal readonly   PropField       field;

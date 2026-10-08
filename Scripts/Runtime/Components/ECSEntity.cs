@@ -95,7 +95,7 @@ public class ECSEntity : MonoBehaviour
             // remove entity from old entity store
             storeContext = null;
             var id = entityId;
-            if (context.linkIds.TryGetValue(gameObject.GetInstanceID(), out int oldId)) {
+            if (context.linkIds.TryGetValue(gameObject.GetEntityId(), out int oldId)) {
                 id = oldId;
             }
             var entity = context.EntityStore.GetEntityById(id);
@@ -142,7 +142,7 @@ public class ECSEntity : MonoBehaviour
             type = CreateType.OnEntityCreate;
             return context.GetAddedEntity();
         }
-        if (!context.linkIds.TryGetValue(gameObject.GetInstanceID(), out int id)) {
+        if (!context.linkIds.TryGetValue(gameObject.GetEntityId(), out int id)) {
             id = entityId;
         }
         if (id == 0) {

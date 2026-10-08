@@ -32,8 +32,8 @@ public class ECSSystemSet : MonoBehaviour
     [SerializeField] public     List<ECSStore>  ecsStores = new (0);
     [SerializeField] internal   List<ECSSystem> ecsSystems;
 #if UNITY_EDITOR
-    [NonSerialized]  internal   TreeViewState   treeViewState;
-    [NonSerialized]  internal   int             treeViewFocusId  = -1;
+    [NonSerialized]  internal   TreeViewState<int>      treeViewState;
+    [NonSerialized]  internal   int                     treeViewFocusId  = -1;
     internal static readonly    HashSet<ECSSystemSet>   AllSystemSets = new ();
 #endif
     #endregion

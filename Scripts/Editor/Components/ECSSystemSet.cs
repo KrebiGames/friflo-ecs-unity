@@ -32,7 +32,7 @@ namespace Friflo.Engine.UnityEditor {
             var systemSet = (ECSSystemSet)target;
             // TreeViewState is not serialized - instead attached to its ECSSystems component.
             var newTreeViewState = systemSet.treeViewState == null;
-            systemSet.treeViewState ??= new TreeViewState();
+            systemSet.treeViewState ??= new TreeViewState<int>();
             systemSet.Init();
             systemSetTree  = new SystemSetTree(systemSet.treeViewState, systemSet);
             if (newTreeViewState) {

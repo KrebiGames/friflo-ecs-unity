@@ -19,13 +19,13 @@ namespace Friflo.Engine.UnityEditor
         private static readonly TypeStore TypeStore = new ();
 
 
-        public SystemSetTree(TreeViewState treeViewState, ECSSystemSet ecsSystemSet) : base(treeViewState) {
+        public SystemSetTree(TreeViewState<int> treeViewState, ECSSystemSet ecsSystemSet) : base(treeViewState) {
             this.ecsSystemSet = ecsSystemSet;
             Reload();
         }
         
     #region build tree items
-        protected override TreeViewItem BuildRoot ()
+        protected override TreeViewItem<int> BuildRoot ()
         {
             // BuildRoot is called every time Reload is called to ensure that TreeViewItems 
             // are created from data. Here we create a fixed set of items. In a real world example,
@@ -35,7 +35,7 @@ namespace Friflo.Engine.UnityEditor
             // have a depth of -1, and the rest of the items increment from that.
             var rootGroup   = ecsSystemSet.groupRoot;
             var root        = new SystemRow(-1, -1, "Root",  rootGroup, null, false);
-            var items       = new List<TreeViewItem>();
+            var items       = new List<TreeViewItem<int>>();
             BuildAddItem(items, 0, 0, "Systems", rootGroup, null, false);
             foreach (var system in rootGroup.ChildSystems) {
                 BuildAddSystem(items, 1, system);
@@ -47,7 +47,7 @@ namespace Friflo.Engine.UnityEditor
             return root;
         }
         
-        private static void BuildAddSystem(List<TreeViewItem> items, int depth, BaseSystem system)
+        private static void BuildAddSystem(List<TreeViewItem<int>> items, int depth, BaseSystem system)
         {
             if (system is SystemGroup childGroup) {
                 BuildAddItem(items, system.Id, depth, system.Name, system, null, false);
@@ -242,7 +242,7 @@ namespace Friflo.Engine.UnityEditor
             group.SetName(args.newName);
         }
 
-        protected override bool CanRename(TreeViewItem item)
+        protected override bool CanRename(TreeViewItem<int> item)
         {
             var systemRow = (SystemRow)item;
             if (systemRow.system is SystemGroup) {
@@ -428,7 +428,7 @@ namespace Friflo.Engine.UnityEditor
         }
         #endregion
         
-        protected override float GetCustomRowHeight(int row, TreeViewItem item) {
+        protected override float GetCustomRowHeight(int row, TreeViewItem<int> item) {
             var systemRow = (SystemRow)item;
             var field = systemRow.field; 
             if (field != null) {

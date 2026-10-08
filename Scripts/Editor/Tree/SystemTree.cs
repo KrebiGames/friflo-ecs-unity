@@ -14,14 +14,14 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 namespace Friflo.Engine.UnityEditor
 {
-    internal abstract class SystemTree : TreeView
+    internal abstract class SystemTree : TreeView<int>
     {
         private readonly    List<int>       toggledMarkers = new ();
         internal            float           treeWidth;
         internal            bool            showPerf = false;
         internal            Rect            treeViewScreenRect;
         
-        protected SystemTree(TreeViewState treeViewState)
+        protected SystemTree(TreeViewState<int> treeViewState)
             : base(treeViewState, CreateHeader())
         {
             multiColumnHeader.height = 0;
@@ -43,7 +43,7 @@ namespace Friflo.Engine.UnityEditor
                     }));
         }
 
-        internal static void BuildAddItem(List<TreeViewItem> items, int id, int depth, string name, BaseSystem system, PropField field, bool isLast)
+        internal static void BuildAddItem(List<TreeViewItem<int>> items, int id, int depth, string name, BaseSystem system, PropField field, bool isLast)
         {
             items.Add(new SystemRow (id, depth, name, system, field, isLast));
         }

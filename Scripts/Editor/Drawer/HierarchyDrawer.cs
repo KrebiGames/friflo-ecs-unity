@@ -32,7 +32,7 @@ namespace Friflo.Engine.UnityEditor
         static HierarchyDrawer ()
         {
             var drawer = new HierarchyDrawer();
-            EditorApplication.hierarchyWindowItemOnGUI  += drawer.HierarchyItemCallback;
+            EditorApplication.hierarchyWindowItemByEntityIdOnGUI  += drawer.HierarchyItemCallback;
             EditorSceneManager.sceneClosed              += drawer.OnSceneClosed;
         }
         
@@ -57,7 +57,7 @@ namespace Friflo.Engine.UnityEditor
             return isSelected && hierarchyHasFocus ? styles.idLabelSelected : styles.idLabel;
         }
         
-        private void HierarchyItemCallback (int instanceID, Rect selectionRect)
+        private void HierarchyItemCallback (EntityId instanceID, Rect selectionRect)
         {
             try {
                 DrawHierarchyItem(instanceID, selectionRect);
@@ -68,9 +68,9 @@ namespace Friflo.Engine.UnityEditor
             }
         }
 
-        private void DrawHierarchyItem (int instanceID, Rect selectionRect)
+        private void DrawHierarchyItem (EntityId instanceID, Rect selectionRect)
         {
-            var obj = EditorUtility.InstanceIDToObject(instanceID);
+            var obj = EditorUtility.EntityIdToObject(instanceID);
             if (!(obj is GameObject gameObject)) {
                 return;
             }

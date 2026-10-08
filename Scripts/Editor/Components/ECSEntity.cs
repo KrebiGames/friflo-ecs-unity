@@ -24,7 +24,7 @@ namespace Friflo.Engine.UnityEditor {
     {
         internal                    VisualElement           imguiContainer;
         private static              SystemMatchesTree       _systemMatchesTree;
-        private static readonly     TreeViewState           TreeViewState = new TreeViewState();
+        private static readonly     TreeViewState<int>      TreeViewState = new TreeViewState<int>();
         private static readonly     List<SystemMatch>       MatchesBuffer = new();
         private static readonly     List<SystemTreeMatch>   SystemTreeMatches = new();
         
